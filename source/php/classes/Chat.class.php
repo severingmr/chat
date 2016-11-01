@@ -38,6 +38,39 @@ class Chat{
 			'gravatar'	=> Chat::gravatarFromHash($gravatar)
 		);
 	}
+
+    public static function register($name, $email)
+    {
+        if(!$name || !$email){
+            throw new Exception('Fill in all the required fields.');
+        }
+
+        if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
+            throw new Exception('Your email is invalid.');
+        }
+
+
+
+        // Preparing the gravatar hash:
+        $gravatar = md5(strtolower(trim($email)));
+
+        $user = new ChatUser(array(
+            'name'		=> $name,
+            'email'	=> $email,
+            'status'=> 'register'
+        ));
+
+        // The save method returns a MySQLi object
+        if($user->registriern()->affected_rows != 1){
+            throw new Exception('This nick is in use.');
+        }
+
+
+        return array(
+            'status'	=> 1,
+
+        );
+    }
 	
 	public static function checkLogged(){
 		$response = array('logged' => false);
