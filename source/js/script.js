@@ -49,6 +49,8 @@ var chat = {
 			// Using our chatPOST wrapper function
 			// (defined in the bottom):
 
+			console.log((this).serialize());
+
 			$.chatPOST('register',$(this).serialize(),function(r){
 				working = false;
 
