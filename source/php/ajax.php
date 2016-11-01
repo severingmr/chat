@@ -35,12 +35,12 @@ try{
 	switch($_GET['action']){
 		
 		case 'login':
-            $username = checkInput($_Post['name']);
-            $passwort = checkInput($_Post['passwort']);
+            //$username = checkInput($_Post['name']);
+            //$passwort = checkInput($_Post['passwort']);
 
-            $response = Chat::login($username, $passwort);
+            //$response = Chat::login($username, $passwort);
 
-			//$response = Chat::login($_POST['name'],$_POST['email']);
+			$response = Chat::login($_POST['name'],$_POST['email']);
 		break;
 		
 		case 'checkLogged':
