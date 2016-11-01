@@ -19,7 +19,7 @@ class ChatUser extends ChatBase{
 	public function registriern()
     {
         DB::query("
-			INSERT INTO users (name,email, status)
+			INSERT INTO user (name,email, status)
 			VALUES (
 				'".DB::esc($this->name)."',
 				'".DB::esc($this->email)."',
