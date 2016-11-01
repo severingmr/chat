@@ -5,39 +5,94 @@
 class Chat{
 	
 	public static function login($name, $email)
+{
+    if(!$name || !$email){
+        throw new Exception('Fill in all the required fields.');
+    }
+
+    if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
+        throw new Exception('Your email is invalid.');
+    }
+
+
+
+    // Preparing the gravatar hash:
+    $gravatar = md5(strtolower(trim($email)));
+
+    $user = new ChatUser(array(
+        'name'		=> $name,
+        'gravatar'	=> $gravatar
+    ));
+
+    // The save method returns a MySQLi object
+    if($user->save()->affected_rows != 1){
+        throw new Exception('This nick is in use.');
+    }
+
+    $_SESSION['user']	= array(
+        'name'		=> $name,
+        'gravatar'	=> $gravatar
+    );
+
+    return array(
+        'status'	=> 1,
+        'name'		=> $name,
+        'gravatar'	=> Chat::gravatarFromHash($gravatar)
+    );
+}
+
+	public static function entry($name, $email)
     {
-		if(!$name || !$email){
-			throw new Exception('Fill in all the required fields.');
-		}
-		
-		if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
-			throw new Exception('Your email is invalid.');
-		}
-		
-		// Preparing the gravatar hash:
-		$gravatar = md5(strtolower(trim($email)));
-		
-		$user = new ChatUser(array(
-			'name'		=> $name,
-			'gravatar'	=> $gravatar
-		));
-		
-		// The save method returns a MySQLi object
-		if($user->save()->affected_rows != 1){
-			throw new Exception('This nick is in use.');
-		}
-		
-		$_SESSION['user']	= array(
-			'name'		=> $name,
-			'gravatar'	=> $gravatar
-		);
-		
-		return array(
-			'status'	=> 1,
-			'name'		=> $name,
-			'gravatar'	=> Chat::gravatarFromHash($gravatar)
-		);
-	}
+        $user = new ChatUser(array(
+            'name'		=> $name,
+            'email'	=> $email
+        ));
+        if ($user->getStatus()->affected_rows != 1){
+            return true;
+        }
+
+    }
+
+    public static function chatZugang($name, $email)
+    {
+        if(!$name || !$email){
+            throw new Exception('Fill in all the required fields.');
+        }
+
+        if(!filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
+            throw new Exception('Your email is invalid.');
+        }
+
+        if(self::entry()) {
+            throw new Exception('Du bist nicht Registriert');
+        }
+
+
+
+        // Preparing the gravatar hash:
+        $gravatar = md5(strtolower(trim($email)));
+
+        $user = new ChatUser(array(
+            'name'		=> $name,
+            'gravatar'	=> $gravatar
+        ));
+
+        // The save method returns a MySQLi object
+        if($user->save()->affected_rows != 1){
+            throw new Exception('This nick is in use.');
+        }
+
+        $_SESSION['user']	= array(
+            'name'		=> $name,
+            'gravatar'	=> $gravatar
+        );
+
+        return array(
+            'status'	=> 1,
+            'name'		=> $name,
+            'gravatar'	=> Chat::gravatarFromHash($gravatar)
+        );
+    }
 
     public static function register($name, $email)
     {

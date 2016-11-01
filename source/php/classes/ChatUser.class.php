@@ -38,6 +38,17 @@ class ChatUser extends ChatBase{
 				'".DB::esc($this->gravatar)."'
 			) ON DUPLICATE KEY UPDATE last_activity = NOW()");
 	}
+
+    public function getStatus(){
+
+        //funktioniert noch nicht--> noch checken
+        DB::query("
+			SELECT count (*)
+			FROM USER 
+			WHERE email = '".DB::esc($this->email)."' AND name = '".DB::esc($this->name)."' AND status = 'ok'
+		  ");
+		  return DB::getMySQLiObject();
+    }
 }
 
 ?>
