@@ -4,7 +4,8 @@
 
 class Chat{
 	
-	public static function login($name,$email){
+	public static function login($name,$email)
+    {
 		if(!$name || !$email){
 			throw new Exception('Fill in all the required fields.');
 		}
