@@ -2,23 +2,31 @@
 
 class ChatUser extends ChatBase{
 	
-	protected $name = '', $gravatar = '';
+	protected $name = '', $gravatar = '', $email='', $status='';
 	
 	public function save(){
-		
-		DB::query("
+
+    DB::query("
 			INSERT INTO webchat_users (name, gravatar)
 			VALUES (
 				'".DB::esc($this->name)."',
 				'".DB::esc($this->gravatar)."'
 		)");
-		
-		return DB::getMySQLiObject();
-	}
+
+    return DB::getMySQLiObject();
+}
 
 	public function registriern()
     {
+        DB::query("
+			INSERT INTO webchat_users (name,email, status)
+			VALUES (
+				'".DB::esc($this->name)."',
+				'".DB::esc($this->email)."',
+				'".DB::esc($this->status)."',
+		)");
 
+        return DB::getMySQLiObject();
     }
 	
 	public function update(){

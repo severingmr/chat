@@ -37,23 +37,51 @@ var chat = {
 		
 		// Logging a person in the chat:
 		
-		$('#loginForm').submit(function(){
-			
+		$('#registerForm').submit(function(){
+
+			//var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+			//var validierenMail = hier noch regex beenden
+
+
 			if(working) return false;
 			working = true;
-			
+
 			// Using our chatPOST wrapper function
 			// (defined in the bottom):
-			
+
+			$.chatPOST('register',$(this).serialize(),function(r){
+				working = false;
+
+				if(r.error){
+					chat.displayError(r.error);
+				}
+				else chat.register(r.name,r.gravatar);
+			});
+
+			return false;
+		});
+
+		$('#loginForm').submit(function(){
+
+			//var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+			//var validierenMail =
+
+
+			if(working) return false;
+			working = true;
+
+			// Using our chatPOST wrapper function
+			// (defined in the bottom):
+
 			$.chatPOST('login',$(this).serialize(),function(r){
 				working = false;
-				
+
 				if(r.error){
 					chat.displayError(r.error);
 				}
 				else chat.login(r.name,r.gravatar);
 			});
-			
+
 			return false;
 		});
 		
