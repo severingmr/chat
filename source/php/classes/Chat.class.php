@@ -4,9 +4,9 @@
 
 class Chat{
 	
-	public static function login($name,$email)
+	public static function login($name, $passwort)
     {
-		if(!$name || !$email){
+		if(!$name || !$passwort){
 			throw new Exception('Fill in all the required fields.');
 		}
 		
@@ -15,7 +15,7 @@ class Chat{
 		}
 		
 		// Preparing the gravatar hash:
-		$gravatar = md5(strtolower(trim($email)));
+		$gravatar = md5(strtolower(trim($passwort)));
 		
 		$user = new ChatUser(array(
 			'name'		=> $name,

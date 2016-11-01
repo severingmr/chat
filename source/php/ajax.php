@@ -35,7 +35,10 @@ try{
 	switch($_GET['action']){
 		
 		case 'login':
+            $username = checkInput($_Post['name']);
+            $passwort = checkInput($_Post['passwort']);
 
+            $response = Chat::login($username, $passwort);
 
 			//$response = Chat::login($_POST['name'],$_POST['email']);
 		break;
@@ -68,6 +71,13 @@ try{
 }
 catch(Exception $e){
 	die(json_encode(array('error' => $e->getMessage())));
+}
+
+function checkInput ($chImput)
+{
+	$trim_input = trim($chImput); //Entfernt Whitespaces am Anfang und Ende eines Stringes
+	$trim_input = htmlspecialchars($trim_input, ENT_QUOTES); //Wanderlt Sonderzeichen in HTML-Codes um
+	return $trim_input;
 }
 
 ?>

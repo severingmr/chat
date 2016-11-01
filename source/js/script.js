@@ -60,6 +60,8 @@ var chat = {
 		// Submitting a new chat entry:
 		
 		$('#submitForm').submit(function(){
+
+
 			
 			var text = $('#chatText').val();
 			
