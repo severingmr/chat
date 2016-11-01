@@ -15,6 +15,11 @@ class ChatUser extends ChatBase{
 		
 		return DB::getMySQLiObject();
 	}
+
+	public function registriern()
+    {
+
+    }
 	
 	public function update(){
 		DB::query("
