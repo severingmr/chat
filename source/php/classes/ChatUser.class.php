@@ -16,18 +16,18 @@ class ChatUser extends ChatBase{
     return DB::getMySQLiObject();
 }
 
-	public function registriern()
-    {
-        DB::query("
-			INSERT INTO user (name,email, status)
+	public function registriern(){
+
+    DB::query("
+			INSERT INTO webchat_users (name, gravatar)
 			VALUES (
 				'".DB::esc($this->name)."',
-				'".DB::esc($this->email)."',
-				'".DB::esc($this->status)."',
+				'".DB::esc($this->name)."'
 		)");
 
-        return DB::getMySQLiObject();
-    }
+    return DB::getMySQLiObject();
+}
+
 	
 	public function update(){
 		DB::query("
