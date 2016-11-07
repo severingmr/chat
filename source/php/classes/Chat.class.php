@@ -110,12 +110,39 @@ class Chat
 
 
 
+
+
+
+
+
+
+
+
+
+
+
         // Preparing the gravatar hash:
         $gravatar = md5(strtolower(trim($email)));
         $escaped_name = htmlspecialchars($name);
 
 
     }
+
+    public static function adminGetUser() {
+
+        if ($_SESSION['admin']) {
+            $result = DB::query('SELECT * FROM user ORDER BY status');
+            $users = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            return $users;
+        }
+        else {
+            return array(
+                'error'
+            );
+        }
+
+        }
+
 
     public static function logout()
     {
