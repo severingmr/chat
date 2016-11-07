@@ -37,34 +37,7 @@ var chat = {
 		
 		// Logging a person in the chat:
 		
-		$('#registerForm').submit(function(){
 
-
-			//var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
-			//var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
-
-			//if (!validName || !validEmail) return false;
-			//noch beenden
-
-			if(working) return false;
-			working = true;
-
-			// Using our chatPOST wrapper function
-			// (defined in the bottom):
-
-			console.log($(this).serialize());
-
-			$.chatPOST('register',$(this).serialize(),function(r){
-				working = false;
-
-				if(r.error){
-					chat.displayError(r.error);
-				}
-				else chat.register(r.name,r.gravatar);
-			});
-
-			return false;
-		});
 
 		$('#loginForm').submit(function(){
 
