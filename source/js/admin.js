@@ -93,7 +93,9 @@ var chat = {
 
         });
 
-        $('.saveUser').live('click',function(){
+        $('.saveUser').live('click',function();
+
+            console.log(this).serialize();
 
             $.chatPOST('saveUser',$(this).serialize(),function (r) {
                 working = false;
