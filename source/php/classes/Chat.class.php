@@ -92,6 +92,26 @@ class Chat
         return $response;
     }
 
+    public static function loginAdmin($name, $email)
+    {
+        if (!$name || !$email) {
+            throw new Exception('Fill in all the required fields.');
+        }
+
+        if (!filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) {
+            throw new Exception('Your email is invalid.');
+        }
+
+        if  (admin == self::isAdministrato($name, $email)) return false;
+
+
+        // Preparing the gravatar hash:
+        $gravatar = md5(strtolower(trim($email)));
+        $escaped_name = htmlspecialchars($name);
+
+
+    }
+
     public static function logout()
     {
         DB::query("DELETE FROM webchat_users WHERE name = '" . DB::esc($_SESSION['user']['name']) . "'");
@@ -187,7 +207,12 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        return DB::query("SELECT COUNT(*) AS cnt FROM users WHERE email='" . $email . "' AND name='" . $name . "'AND status='OK'")->fetch_object();
+        return DB::query("SELECT COUNT(*) AS cnt FROM USER WHERE email='" . $email . "' AND name='" . $name . "'AND status='OK'")->fetch_object();
+    }
+
+    public static function isAdministrato ($name, $email) {
+
+        return DB::query("SELECT Status FROM USER WHERE email='" . $email . "' AND name='" . $name . "'AND status='admin'" )->fetch_object();
     }
 }
 
