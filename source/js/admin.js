@@ -79,7 +79,7 @@ var chat = {
                 usersNoAdmin.forEach(function (userRow) {
 
                 $('#users').append("<tr data-user-id='" + userRow['userid']+ "'> <td>" + userRow['email'] + "</td> <td>" + userRow['name'] +"</td> <td> " + userRow['status'] +" </td>" +
-                    "<td> <imput value='"+ userRow['status'] + "'> </imput> </td> " +
+                    "<td> <input value='"+ userRow['status'] + "'> </td> " +
                     "<td>  <button class='blueButton saveUser'>save</button>" +
                     " <button class='blueButton deleteUser'>del</button></td></tr>");
 
