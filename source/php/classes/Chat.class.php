@@ -59,10 +59,12 @@ class Chat
         // Preparing the gravatar hash:
         $gravatar = md5(strtolower(trim($email)));
         $escaped_name = htmlspecialchars($name);
+        $escaped_email = htmlspecialchars($email);
 
         $user = new ChatUser(array(
             'name' => $escaped_name,
-            'gravatar' => $gravatar,
+            'email' => $escaped_email,
+            'status' => 'register'
         ));
 
         // The save method returns a MySQLi object

@@ -34,7 +34,7 @@ class ChatUser extends ChatBase{
 			INSERT INTO user (name, email, status)
 			VALUES (
 				'".DB::esc($this->name)."',
-				'hans@hans.ch',
+				'".DB::esc($this->email)."',
 				'".DB::esc($this->status)."'
 		)");
 
