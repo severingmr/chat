@@ -110,6 +110,8 @@ class Chat
         session_start();
         $_SESSION['admin'] = $name;
 
+        return true;
+
 
 
 
