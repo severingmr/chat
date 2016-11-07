@@ -35,7 +35,7 @@ class ChatUser extends ChatBase{
 			VALUES (
 				'".DB::esc($this->name)."',
 				'".DB::esc($this->email)."',
-				'".DB::esc($this->status)."'
+				'register'
 		)");
 
     return DB::getMySQLiObject();
