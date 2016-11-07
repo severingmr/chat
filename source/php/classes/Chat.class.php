@@ -137,6 +137,18 @@ class Chat
 
         }
 
+    public static function deleteUser($data_id) {
+
+        return true;
+
+    }
+
+    public static function saveUser($data_id) {
+
+        return true;
+    }
+
+
 
     public static function logout()
     {
