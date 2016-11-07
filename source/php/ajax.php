@@ -77,7 +77,11 @@ try{
             $response = chat::adminGetUser();
             break;
         case 'deleteUser':
-            $response = chat::deleteUser($_POST[??????])
+            $response = chat::deleteUser($_POST['data_uid']);
+            break;
+        case 'saveUser':
+            $response = chat::saveUser($_POST['data_uid']);
+            break;
 
 		default:
 			throw new Exception('Wrong action');
