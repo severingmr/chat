@@ -60,8 +60,6 @@ var chat = {
                 else chat.displayError('admin');
             });
 
-            return false;
-
             $.chatPOST('adminlogged',$(this).serialize(),function (r) {
                 working = false;
                 if(r.error){
@@ -73,6 +71,8 @@ var chat = {
 
 
             })
+
+            return false;
 
         });
 
