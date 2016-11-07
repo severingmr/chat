@@ -61,7 +61,20 @@ var chat = {
             });
 
             return false;
+
+            $.chatPOST('adminlogged',$(this).serialize(),function (r) {
+                working = false;
+                if(r.error){
+                    chat.displayError(r.error);
+                }
+                else chat.displayError('admin');
+
+
+            })
+
         });
+
+
 
 
 

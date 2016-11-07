@@ -107,6 +107,8 @@ class Chat
 
         if  (!self::isAdministrator($name, $email)) return false;
 
+        session_start();
+        $_SESSION['admin'] = $name;
 
 
 

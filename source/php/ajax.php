@@ -73,6 +73,10 @@ try{
 			$response = Chat::loginAdmin($_POST['name'],$_POST['email']);
             break;
 
+        case 'adminlogged':
+            $response = chat::adminGetUser();
+            break;
+
 		default:
 			throw new Exception('Wrong action');
 	}
