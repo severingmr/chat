@@ -77,7 +77,7 @@ var chat = {
 
                 usersNoAdmin.forEach(function (userRow) {
 
-                $('#userTable').append("<tr data-user-id='" + userRow['userid']+ "'><td>" + userRow['email'] + "</td><td>" + userRow['name'] +"</td><td><imput value='"+ userRow['status'] + "'> </td> <td>  <button class='blueButton saveUser'>save</button> <button class='blueButton deleteUser'>del</button></td></tr>");
+                $('#users').append("<tr data-user-id='" + userRow['userid']+ "'><td>" + userRow['email'] + "</td><td>" + userRow['name'] +"</td><td><imput value='"+ userRow['status'] + "'> </td> <td>  <button class='blueButton saveUser'>save</button> <button class='blueButton deleteUser'>del</button></td></tr>");
 
                 });
 
@@ -278,55 +278,7 @@ var chat = {
 
     },
 
-    // This method requests the latest chats
-    // (since lastID), and adds them to the page.
 
-    getChats : function(callback){
-        $.chatGET('getChats',{lastID: chat.data.lastID},function(r){
-
-            for(var i=0;i<r.chats.length;i++){
-                chat.addChatLine(r.chats[i]);
-            }
-
-            if(r.chats.length){
-                chat.data.noActivity = 0;
-                chat.data.lastID = r.chats[i-1].id;
-            }
-            else{
-                // If no chats were received, increment
-                // the noActivity counter.
-
-                chat.data.noActivity++;
-            }
-
-            if(!chat.data.lastID){
-                chat.data.jspAPI.getContentPane().html('<p class="noChats">No chats yet</p>');
-            }
-
-            // Setting a timeout for the next request,
-            // depending on the chat activity:
-
-            var nextRequest = 1000;
-
-            // 2 seconds
-            if(chat.data.noActivity > 3){
-                nextRequest = 2000;
-            }
-
-            if(chat.data.noActivity > 10){
-                nextRequest = 5000;
-            }
-
-            // 15 seconds
-            if(chat.data.noActivity > 20){
-                nextRequest = 15000;
-            }
-
-            setTimeout(callback,nextRequest);
-        });
-    },
-
-    // Requesting a list with all the users.
 
     getUsers : function(callback){
         $.chatGET('getUsers',function(r){
