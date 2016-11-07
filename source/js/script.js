@@ -39,9 +39,12 @@ var chat = {
 		
 		$('#registerForm').submit(function(){
 
-			//var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-			//var validierenMail = hier noch regex beenden
 
+			//var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
+			//var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
+
+			//if (!validName || !validEmail) return false;
+			//noch beenden
 
 			if(working) return false;
 			working = true;
@@ -67,6 +70,7 @@ var chat = {
 
 			//var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 			//var validierenMail =
+
 
 
 			if(working) return false;
