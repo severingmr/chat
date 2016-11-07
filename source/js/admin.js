@@ -93,7 +93,7 @@ var chat = {
 
         });
 
-        $('.saveUser').live('click',function();
+        $('.saveUser').live('click',function(){
 
             console.log(this).serialize();
 
