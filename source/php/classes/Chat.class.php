@@ -105,7 +105,9 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        if  (admin == self::isAdministrato($name, $email)) return false;
+        if  (!self::isAdministrator($name, $email)) return false;
+
+
 
 
         // Preparing the gravatar hash:
@@ -213,9 +215,10 @@ class Chat
         return DB::query("SELECT COUNT(*) AS cnt FROM USER WHERE email='" . $email . "' AND name='" . $name . "'AND status='OK'")->fetch_object();
     }
 
-    public static function isAdministrato ($name, $email) {
+    public static function isAdministrator ($name, $email) {
 
-        return DB::query("SELECT Status FROM USER WHERE email='" . $email . "' AND name='" . $name . "'AND status='admin'" )->fetch_object();
+        $res =  DB::query("SELECT COUNT(*) FROM user WHERE email='" . $email . "' AND name='" . $name . "'AND status='admin'" )->fetch_object();
+        return ($res > 0);
     }
 }
 
