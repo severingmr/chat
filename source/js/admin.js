@@ -68,13 +68,26 @@ var chat = {
                 else chat.displayError('admin');
 
                 console.log(r);
+                chat.displayError("angemeldet");
+
+                var usersNoAdmin = r.filter(function (user){
+                    return (user ['status']!= 'admin');
+                });
 
 
-            })
+                usersNoAdmin.forEach(function (userRow) {
+
+                $('#userTable').append("<tr data-user-id='" + userRow['userid']+ "'><td>" + userRow['email'] + "</td><td>" + userRow['name'] +"</td><td><imput value='"+ userRow['status'] + "'> </td> <td>  <button class='blueButton saveUser'>save</button> <button class='blueButton deleteUser'>del</button></td></tr>");
+
+                });
+
+
+            });
 
             return false;
 
         });
+
 
 
 
