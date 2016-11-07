@@ -121,6 +121,8 @@ class Chat
 
 
 
+
+
         // Preparing the gravatar hash:
         $gravatar = md5(strtolower(trim($email)));
         $escaped_name = htmlspecialchars($name);
