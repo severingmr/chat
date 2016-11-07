@@ -51,13 +51,13 @@ var chat = {
 
             console.log($(this).serialize());
 
-            $.chatPOST('register',$(this).serialize(),function(r){
+            $.chatPOST('admin',$(this).serialize(),function(r){
                 working = false;
 
                 if(r.error){
                     chat.displayError(r.error);
                 }
-                else chat.displayError('register');
+                else chat.displayError('admin');
             });
 
             return false;

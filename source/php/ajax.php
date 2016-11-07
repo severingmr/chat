@@ -68,7 +68,11 @@ try{
 		case 'getChats':
 			$response = Chat::getChats($_GET['lastID']);
 		break;
-		
+
+		case 'admin':
+			$response = Chat::loginAdmin($_POST['name'],$_POST['email']);
+            break;
+
 		default:
 			throw new Exception('Wrong action');
 	}
