@@ -62,7 +62,7 @@ class Chat
 
         $user = new ChatUser(array(
             'name' => $escaped_name,
-            'gravatar' => $gravatar
+            'gravatar' => $gravatar,
         ));
 
         // The save method returns a MySQLi object
