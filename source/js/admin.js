@@ -69,6 +69,8 @@ var chat = {
                 }
                 else chat.displayError('admin');
 
+                console.log(r);
+
 
             })
 
