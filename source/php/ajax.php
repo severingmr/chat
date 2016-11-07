@@ -76,6 +76,8 @@ try{
         case 'adminlogged':
             $response = chat::adminGetUser();
             break;
+        case 'deleteUser':
+            $response = chat::deleteUser($_POST[??????])
 
 		default:
 			throw new Exception('Wrong action');

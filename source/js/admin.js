@@ -86,13 +86,42 @@ var chat = {
                 });
 
 
+
             });
 
             return false;
 
         });
 
+        $('.saveUser').live('click',function(){
 
+            $.chatPOST('saveUser',$(this).serialize(),function (r) {
+                working = false;
+                if (r.error) {
+                    chat.displayError(r.error);
+                }
+                else chat.displayError('deleteUser');
+
+            });
+
+
+                return false;
+        });
+
+        $('.deleteUser').live('click',function() {
+
+            $.chatPOST('deleteUser', $(this).serialize(), function (r) {
+                working = false;
+                if (r.error) {
+                    chat.displayError(r.error);
+                }
+                else chat.displayError('deleteUser');
+
+
+                return false;
+            });
+
+        });
 
 
 
