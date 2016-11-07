@@ -57,7 +57,7 @@ var chat = {
                 if(r.error){
                     chat.displayError(r.error);
                 }
-                else chat.register(r.name,r.gravatar);
+                else chat.displayError('register');
             });
 
             return false;
