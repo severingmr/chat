@@ -15,7 +15,8 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        return self::isAllowed($name, $email);
+        return "hallo";
+            //self::isAllowed($name, $email);
 
         if (!self::isAllowed($name, $email))
         {
