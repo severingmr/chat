@@ -5,6 +5,57 @@ $(document).ready(function(){
 
 });
 
+$('.saveUser').live('click',function(){
+    var uID = getUserID(e);
+    var status =
+
+        console.log($(this).serialize());
+
+
+
+    ///// Fertig machen, wert von feld auslesen und hier weitergeben bis php
+
+    $.chatPOST('saveUser',$(this).serialize(),function (r) {
+        working = false;
+        if (r.error) {
+            chat.displayError(r.error);
+        }
+        else chat.displayError('saveUser');
+
+    });
+
+
+    return false;
+});
+
+
+
+$('.deleteUser').live('click',function() {
+    var uID = getUserID();
+
+    $.chatPOST('deleteUser', "user_uid=" + uID , function (r) {
+        working = false;
+        if (r.error) {
+            chat.displayError(r.error);
+        }
+        else {
+            $('table').find("[data-user-id'" + uID + "']").fadeOut();
+        }
+
+        chat.displayError('deleteUser');
+
+
+    });
+
+});
+
+function getUserID(e) {
+    var uID = $(e.target).find('tr').data('id');
+    var tr = $(e.target).parent().parent();
+    return tr[0].dataset.uID;
+
+}
+
 var chat = {
 
     // data holds variables for use in the class:
@@ -104,44 +155,6 @@ var chat = {
                 return true;
             }
         }
-
-
-        $('.saveUser').live('click',function(){
-
-            console.log($(this).serialize());
-
-            ///// Fertig machen, wert von feld auslesen und hier weitergeben bis php
-
-            $.chatPOST('saveUser',$(this).serialize(),function (r) {
-                working = false;
-                if (r.error) {
-                    chat.displayError(r.error);
-                }
-                else chat.displayError('deleteUser');
-
-            });
-
-
-                return false;
-        });
-
-        $('.deleteUser').live('click',function() {
-
-            $.chatPOST('deleteUser', $(this).serialize(), function (r) {
-                working = false;
-                if (r.error) {
-                    chat.displayError(r.error);
-                }
-                else chat.displayError('deleteUser');
-
-
-                return false;
-            });
-
-        });
-
-
-
 
         // Submitting a new chat entry:
 

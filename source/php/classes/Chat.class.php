@@ -235,15 +235,21 @@ class Chat
 
     }
 
-    public static function deleteUser($data_id) {
+    public static function deleteUser($data_uid) {
 
-        $result = DB::query('DELETE FROM user WHERE userID = '.$data_id.'');
+        $esc_ID = DB::esc($data_uid);
+        $result = DB::query('DELETE FROM user WHERE id = '.$esc_ID.'');
 
         return true;
 
     }
 
-    public static function saveUser($data_id) {
+    public static function saveUser($data_uid, $dstatus) {
+        $esc_data_id = DB::esc($data_uid);
+        $esc_dstatus = DB::esc($dstatus);
+
+        $result = DB::query('UPDATE user SET status = "OK" WHERE id = '.$esc_data_id.'');
+
 
         return true;
     }
@@ -256,7 +262,10 @@ class Chat
 
     public static function isAdministrator ($name, $email) {
 
-        $res =  DB::query("SELECT COUNT(*) FROM user WHERE email='" . $email . "' AND name='" . $name . "'AND status='admin'" )->fetch_object();
+        $n = DB::esc($name);
+        $e = DB::esc($email);
+
+        $res =  DB::query("SELECT COUNT(*) FROM user WHERE email='" . $e . "' AND name='" . $n . "'AND status='admin'" )->fetch_object();
         return ($res > 0);
     }
 }
