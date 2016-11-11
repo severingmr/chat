@@ -11,7 +11,7 @@ $('.saveUser').live('click',function(e){
 
     console.log($(this).serialize());
 
-    $.chatPOST('saveUser',$(this).serialize(), function (r) {
+    $.chatPOST('saveUser', "uID="+ uID + "&status="+status, function (r) {
         working = false;
         if (r.error) {
             chat.displayError(r.error);
