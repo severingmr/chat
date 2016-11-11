@@ -15,8 +15,7 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        return "hallo";
-            //self::isAllowed($name, $email);
+        return self::isAllowed($name, $email);
 
         if (!self::isAllowed($name, $email))
         {
@@ -261,7 +260,7 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        return DB::query("SELECT COUNT(*) AS cnt FROM USER WHERE email='" . $email . "' AND name='" . $name . "'AND status='OK'")->fetch_object();
+        return DB::query("SELECT COUNT(*)  FROM USER WHERE email='" . $email . "' AND name='" . $name . "' AND status='ok'");
     }
 
     public static function isAdministrator ($name, $email) {
