@@ -29,7 +29,7 @@ $('.saveUser').live('click',function(e){
 $('.deleteUser').live('click',function(e) {
     var uID = getUserID(e);
 
-    $.chatPOST('deleteUser', "user_uid=" + uID , function (r) {
+    $.chatPOST('deleteUser', "uid=" + uID , function (r) {
         working = false;
         if (r.error) {
             chat.displayError(r.error);

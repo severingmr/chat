@@ -239,7 +239,7 @@ class Chat
     public static function deleteUser($data_uid) {
 
         $esc_ID = DB::esc($data_uid);
-        $result = DB::query('DELETE FROM user WHERE id = '.$esc_ID.'');
+        $result = DB::query("DELETE FROM user WHERE id = '".$esc_ID."'");
 
         return true;
 

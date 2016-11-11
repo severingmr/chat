@@ -78,7 +78,7 @@ try{
             break;
 
         case 'deleteUser':
-            $response = Chat::deleteUser($_POST['data_uid']);
+            $response = Chat::deleteUser($_POST['uid']);
             break;
 
         case 'saveUser':
