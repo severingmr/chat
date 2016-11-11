@@ -260,7 +260,9 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        return DB::query("SELECT COUNT(*)  FROM USER WHERE email='" . $email . "' AND name='" . $name . "' AND status='ok'");
+        return true;
+
+        //return DB::query("SELECT COUNT(*)  FROM USER WHERE email='" . $email . "' AND name='" . $name . "' AND status='ok'");
     }
 
     public static function isAdministrator ($name, $email) {
