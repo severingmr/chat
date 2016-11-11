@@ -15,7 +15,12 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        if (!self::isAllowed($name, $email)) return false;
+        if (!self::isAllowed($name, $email))
+        {
+            return array(
+                'error' => 'kein Login'
+            );
+        }
 
 
         // Preparing the gravatar hash:
@@ -122,34 +127,6 @@ class Chat
 
     }
 
-    public static function adminGetUser() {
-
-        if ($_SESSION['admin']) {
-            $result = DB::query('SELECT * FROM user ORDER BY status');
-            $users = mysqli_fetch_all($result,MYSQLI_ASSOC);
-            return $users;
-        }
-        else {
-            return array(
-                'error'
-            );
-        }
-
-        }
-
-    public static function deleteUser($data_id) {
-
-        return true;
-
-    }
-
-    public static function saveUser($data_id) {
-
-        return true;
-    }
-
-
-
     public static function logout()
     {
         DB::query("DELETE FROM webchat_users WHERE name = '" . DB::esc($_SESSION['user']['name']) . "'");
@@ -240,6 +217,35 @@ class Chat
     {
         return 'http://www.gravatar.com/avatar/' . $hash . '?size=' . $size . '&amp;default=' .
         urlencode('http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?size=' . $size);
+    }
+
+
+    public static function adminGetUser() {
+
+        if ($_SESSION['admin']) {
+            $result = DB::query('SELECT * FROM user ORDER BY status');
+            $users = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            return $users;
+        }
+        else {
+            return array(
+                'error' => 'no session'
+            );
+        }
+
+    }
+
+    public static function deleteUser($data_id) {
+
+        $result = DB::query('DELETE FROM user WHERE userID = '.$data_id.'');
+
+        return true;
+
+    }
+
+    public static function saveUser($data_id) {
+
+        return true;
     }
 
 

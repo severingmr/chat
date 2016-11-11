@@ -37,10 +37,10 @@ var chat = {
         $('#adminForm').submit(function(){
 
 
-            //var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
-            //var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
+            var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
+            var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|ch|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
 
-            //if (!validName || !validEmail) return false;
+            if (!validName || !validEmail) return false;
             //noch beenden
 
             if(working) return false;
@@ -92,6 +92,19 @@ var chat = {
             return false;
 
         });
+
+        function validateInput(field, _regax) {
+            da = field.val();
+            var regex = new RegExp(_regax);
+            if (!regex.test(da)){
+                alert("Bitte korr. Text eingeben");
+                field.val("");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
 
         $('.saveUser').live('click',function(){
 
@@ -265,57 +278,8 @@ var chat = {
 
     },
 
-    // The addChatLine method ads a chat entry to the page
 
-    addChatLine : function(params){
-
-        // All times are displayed in the user's timezone
-
-        var d = new Date();
-        if(params.time) {
-
-            // PHP returns the time in UTC (GMT). We use it to feed the date
-            // object and later output it in the user's timezone. JavaScript
-            // internally converts it for us.
-
-            d.setUTCHours(params.time.hours,params.time.minutes);
-        }
-
-        params.time = (d.getHours() < 10 ? '0' : '' ) + d.getHours()+':'+
-            (d.getMinutes() < 10 ? '0':'') + d.getMinutes();
-
-        var markup = chat.render('chatLine',params),
-            exists = $('#chatLineHolder .chat-'+params.id);
-
-        if(exists.length){
-            exists.remove();
-        }
-
-        if(!chat.data.lastID){
-            // If this is the first chat, remove the
-            // paragraph saying there aren't any:
-
-            $('#chatLineHolder p').remove();
-        }
-
-        // If this isn't a temporary chat:
-        if(params.id.toString().charAt(0) != 't'){
-            var previous = $('#chatLineHolder .chat-'+(+params.id - 1));
-            if(previous.length){
-                previous.after(markup);
-            }
-            else chat.data.jspAPI.getContentPane().append(markup);
-        }
-        else chat.data.jspAPI.getContentPane().append(markup);
-
-        // As we added new content, we need to
-        // reinitialise the jScrollPane plugin:
-
-        chat.data.jspAPI.reinitialise();
-
-    },
-
-
+    // Requesting a list with all users
 
     getUsers : function(callback){
         $.chatGET('getUsers',function(r){
