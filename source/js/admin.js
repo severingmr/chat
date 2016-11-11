@@ -56,7 +56,7 @@ function getUserID(e) {
 
 function getStatus(e) {
     var tr = $(e.target).parent().parent();
-    return tr.find('input').value
+    return tr.find('td input').val();
 }
 
 var chat = {
