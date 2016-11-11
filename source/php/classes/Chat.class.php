@@ -246,6 +246,7 @@ class Chat
     }
 
     public static function saveUser($data_uid, $dstatus) {
+        error_log("saveUser");
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
 
