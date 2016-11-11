@@ -260,7 +260,7 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='peter@meier.ch' AND name='peter' AND status='ok'");
+        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='".$email."' AND name='".$name."' AND status='ok'");
         $count = $stmt->fetch_object()->cnt;
         return ($count > 0);
     }
