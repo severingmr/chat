@@ -50,7 +50,7 @@ $('.deleteUser').live('click',function(e) {
 });
 
 function getUserID(e) {
-    var uID = $(e.target).find('tr').data('id');
+    var uID = $(e.target).find('tr').data('uid');
     console.log(uID);
     var tr = $(e.target).parent().parent();
     return tr[0].dataset.uID;
