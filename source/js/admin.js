@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 $('.saveUser').live('click',function(e){
     var uID = getUserID(e);
-    var status =
+    var status = getStatus(e);
 
         console.log($(this).serialize());
 
@@ -50,11 +50,13 @@ $('.deleteUser').live('click',function(e) {
 });
 
 function getUserID(e) {
-    var uID = $(e.target).find('tr').data('uid');
-    console.log(uID);
     var tr = $(e.target).parent().parent();
-    return tr[0].dataset.uID;
+    return tr[0].dataset.uid;
+}
 
+function getStatus(e) {
+    var tr = $(e.target).parent().parent();
+    return tr.find('input').value
 }
 
 var chat = {
