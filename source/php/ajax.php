@@ -74,15 +74,15 @@ try{
             break;
 
         case 'adminlogged':
-            $response = chat::adminGetUser();
+            $response = Chat::adminGetUser();
             break;
 
         case 'deleteUser':
-            $response = chat::deleteUser($_POST['data_uid']);
+            $response = Chat::deleteUser($_POST['data_uid']);
             break;
 
         case 'saveUser':
-            $response = chat::saveUser($_POST['uID'], $_POST['status']);
+            $response = Chat::saveUser($_POST['uID'], $_POST['status']);
             break;
 
 		default:
