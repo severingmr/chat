@@ -35,7 +35,7 @@ $('.deleteUser').live('click',function(e) {
             chat.displayError(r.error);
         }
         else {
-            $('table').find("[data-user-id'" + uID + "']").fadeOut();
+            $('table').find("tr[data-uid='" + uID + "']").fadeOut();
         }
 
         chat.displayError('deleteUser');
