@@ -246,13 +246,8 @@ class Chat
     }
 
     public static function saveUser($data_uid, $dstatus) {
-        error_log("saveUser");
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
-
-        error_log(print_r($esc_data_id, true));
-        error_log(print_r($esc_dstatus, true));
-
 
         $result = DB::query("UPDATE user SET status = '".$esc_dstatus."' WHERE id = '".$esc_data_id."'");
         return $result;
