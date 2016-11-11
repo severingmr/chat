@@ -249,7 +249,11 @@ class Chat
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
 
-        $result = DB::query('UPDATE user SET status = "'.$esc_dstatus.'" WHERE id = '.$esc_data_id.'');
+        error_log(print_r($esc_data_id, true));
+        error_log(print_r($esc_dstatus, true));
+
+
+        $result = DB::query("UPDATE user SET status = '".$esc_dstatus."' WHERE id = '".$esc_data_id."'");
         return $result;
     }
 
