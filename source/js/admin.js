@@ -9,6 +9,8 @@ $('.saveUser').live('click',function(e){
     var uID = getUserID(e);
     var status = getStatus(e);
 
+    console.log($(this).serialize());
+
     $.chatPOST('saveUser',$(this).serialize(), function (r) {
         working = false;
         if (r.error) {
