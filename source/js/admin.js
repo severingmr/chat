@@ -30,8 +30,8 @@ $('.saveUser').live('click',function(){
 
 
 
-$('.deleteUser').live('click',function() {
-    var uID = getUserID();
+$('.deleteUser').live('click',function(e) {
+    var uID = getUserID(e);
 
     $.chatPOST('deleteUser', "user_uid=" + uID , function (r) {
         working = false;
@@ -51,6 +51,7 @@ $('.deleteUser').live('click',function() {
 
 function getUserID(e) {
     var uID = $(e.target).find('tr').data('id');
+    console.log(uID);
     var tr = $(e.target).parent().parent();
     return tr[0].dataset.uID;
 
