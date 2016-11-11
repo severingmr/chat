@@ -249,10 +249,8 @@ class Chat
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
 
-        $result = DB::query('UPDATE user SET status = "OK" WHERE id = '.$esc_data_id.'');
-
-
-        return true;
+        $result = DB::query('UPDATE user SET status = "'.$esc_dstatus.'" WHERE id = '.$esc_data_id.'');
+        return $result;
     }
 
 

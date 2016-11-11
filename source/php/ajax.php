@@ -82,7 +82,7 @@ try{
             break;
 
         case 'saveUser':
-            $response = chat::saveUser($_POST['data_uid'], $_POST['ustatus']);
+            $response = chat::saveUser($_POST['uID'], $_POST['status']);
             break;
 
 		default:

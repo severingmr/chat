@@ -9,13 +9,7 @@ $('.saveUser').live('click',function(e){
     var uID = getUserID(e);
     var status = getStatus(e);
 
-        console.log($(this).serialize());
-
-
-
-    ///// Fertig machen, wert von feld auslesen und hier weitergeben bis php
-
-    $.chatPOST('saveUser',$(this).serialize(),function (r) {
+    $.chatPOST('saveUser',$(this).serialize(), function (r) {
         working = false;
         if (r.error) {
             chat.displayError(r.error);
