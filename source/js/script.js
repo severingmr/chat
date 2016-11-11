@@ -54,7 +54,7 @@ var chat = {
 
 			$.chatPOST('login',$(this).serialize(),function(r){
 				working = false;
-
+				console.log(r);
 				if(r.error){
 					chat.displayError(r.error);
 				}
