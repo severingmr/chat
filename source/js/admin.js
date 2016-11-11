@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 });
 
-$('.saveUser').live('click',function(){
+$('.saveUser').live('click',function(e){
     var uID = getUserID(e);
     var status =
 
