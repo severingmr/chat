@@ -116,12 +116,16 @@ var chat = {
                 else chat.displayError('admin');
 
                 console.log(r);
-                chat.displayError("angemeldet");
+
                 $("#adminForm").hide(); //zum deaktivieren der Anzeige nach abschluss der arbeit
 
                 var usersNoAdmin = r.filter(function (user) {
                     return (user ['status'] != 'admin');
+                    chat.displayError("keinAdmin");
+
                 });
+
+                chat.displayError("angemeldet");
 
 
                 usersNoAdmin.forEach(function (userRow) {
