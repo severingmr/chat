@@ -110,17 +110,22 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        if (!self::isAdministrator($name, $email)) return false;
+        if (!self::isAdministrator($name, $email)){
+            return false;
+        } else {
 
-        session_start();
-        $_SESSION['admin'] = $name;
+            session_start();
+            $_SESSION['admin'] = $name;
 
-        return true;
+            return true;
+        }
+
+
 
 
         // Preparing the gravatar hash:
-        $gravatar = md5(strtolower(trim($email)));
-        $escaped_name = htmlspecialchars($name);
+        //$gravatar = md5(strtolower(trim($email)));
+        //$escaped_name = htmlspecialchars($name);
 
 
     }
