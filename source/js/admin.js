@@ -108,7 +108,7 @@ var chat = {
                 else chat.displayError('admin');
             });
 
-            $.chatPOST('adminlogged', $(this).serialize(), function (r) {
+            $.chatPOST('administer', $(this).serialize(), function (r) {
                 working = false;
                 if (r.error) {
                     chat.displayError(r.error);

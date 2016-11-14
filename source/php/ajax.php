@@ -84,7 +84,7 @@ try {
             $response = Chat::loginAdmin($_POST['name'], $_POST['email']);
             break;
 
-        case 'adminlogged':
+        case 'administer':
             $response = Chat::adminGetUser();
             break;
 
