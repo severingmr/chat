@@ -260,7 +260,7 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        return false;
+
         $esc_name = DB::esc($name);
         $esc_email = DB::esc($email);
         $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='" . $esc_email . "' AND name='" . $esc_name . "' AND status='ok'");
