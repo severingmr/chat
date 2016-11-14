@@ -268,8 +268,13 @@ class Chat
         $n = DB::esc($name);
         $e = DB::esc($email);
 
-        $res = DB::query("SELECT COUNT(*) FROM user WHERE email='" . $e . "' AND name='" . $n . "'AND status='admin'")->fetch_object();
-        return ($res > 0);
+        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='" . $e . "' AND name='" . $n . "' AND status='admin'");
+        $count = $stmt->fetch_object()->cnt;
+        return ($count > 0);
+
+
+        //$res = DB::query("SELECT COUNT(*) FROM user WHERE email='" . $e . "' AND name='" . $n . "'AND status='admin'")->fetch_object();
+        //return ($res > 0);
     }
 }
 
