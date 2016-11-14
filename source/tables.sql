@@ -3,14 +3,16 @@
 --
 
 CREATE TABLE `webchat_lines` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `author` varchar(16) NOT NULL,
-  `gravatar` varchar(32) NOT NULL,
-  `text` varchar(255) NOT NULL,
-  `ts` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`),
+  `id`       INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author`   VARCHAR(16)      NOT NULL,
+  `gravatar` VARCHAR(32)      NOT NULL,
+  `text`     VARCHAR(255)     NOT NULL,
+  `ts`       TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
   KEY `ts` (`ts`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
@@ -19,11 +21,13 @@ CREATE TABLE `webchat_lines` (
 --
 
 CREATE TABLE `webchat_users` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `name` varchar(16) NOT NULL,
-  `gravatar` varchar(32) NOT NULL,
-  `last_activity` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`),
+  `id`            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name`          VARCHAR(16)      NOT NULL,
+  `gravatar`      VARCHAR(32)      NOT NULL,
+  `last_activity` TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `last_activity` (`last_activity`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;

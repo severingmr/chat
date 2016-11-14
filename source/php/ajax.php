@@ -40,7 +40,7 @@ try {
 
             //$response = Chat::login($username, $email);
 
-            $response = Chat::login($_POST['name'],$_POST['email']);
+            $response = Chat::login($_POST['name'], $_POST['email']);
             break;
 
         case 'register':

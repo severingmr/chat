@@ -15,8 +15,7 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        if (!self::isAllowed($name, $email))
-        {
+        if (!self::isAllowed($name, $email)) {
 
             return array(
                 'error' => 'kein Login'
@@ -111,14 +110,12 @@ class Chat
             throw new Exception('Your email is invalid.');
         }
 
-        if  (!self::isAdministrator($name, $email)) return false;
+        if (!self::isAdministrator($name, $email)) return false;
 
         session_start();
         $_SESSION['admin'] = $name;
 
         return true;
-
-
 
 
         // Preparing the gravatar hash:
@@ -221,14 +218,14 @@ class Chat
     }
 
 
-    public static function adminGetUser() {
+    public static function adminGetUser()
+    {
 
         if ($_SESSION['admin']) {
             $result = DB::query('SELECT * FROM user ORDER BY status');
-            $users = mysqli_fetch_all($result,MYSQLI_ASSOC);
+            $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return $users;
-        }
-        else {
+        } else {
             return array(
                 'error' => 'no session'
             );
@@ -236,20 +233,22 @@ class Chat
 
     }
 
-    public static function deleteUser($data_uid) {
+    public static function deleteUser($data_uid)
+    {
 
         $esc_ID = DB::esc($data_uid);
-        $result = DB::query("DELETE FROM user WHERE id = '".$esc_ID."'");
+        $result = DB::query("DELETE FROM user WHERE id = '" . $esc_ID . "'");
 
         return $result;
 
     }
 
-    public static function saveUser($data_uid, $dstatus) {
+    public static function saveUser($data_uid, $dstatus)
+    {
         $esc_data_id = DB::esc($data_uid);
         $esc_dstatus = DB::esc($dstatus);
 
-        $result = DB::query("UPDATE user SET status = '".$esc_dstatus."' WHERE id = '".$esc_data_id."'");
+        $result = DB::query("UPDATE user SET status = '" . $esc_dstatus . "' WHERE id = '" . $esc_data_id . "'");
         return $result;
     }
 
@@ -258,17 +257,18 @@ class Chat
     {
         $esc_name = DB::esc($name);
         $esc_email = DB::esc($email);
-        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='".$esc_email."' AND name='".$esc_name."' AND status='ok'");
+        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='" . $esc_email . "' AND name='" . $esc_name . "' AND status='ok'");
         $count = $stmt->fetch_object()->cnt;
         return ($count > 0);
     }
 
-    public static function isAdministrator ($name, $email) {
+    public static function isAdministrator($name, $email)
+    {
 
         $n = DB::esc($name);
         $e = DB::esc($email);
 
-        $res =  DB::query("SELECT COUNT(*) FROM user WHERE email='" . $e . "' AND name='" . $n . "'AND status='admin'" )->fetch_object();
+        $res = DB::query("SELECT COUNT(*) FROM user WHERE email='" . $e . "' AND name='" . $n . "'AND status='admin'")->fetch_object();
         return ($res > 0);
     }
 }

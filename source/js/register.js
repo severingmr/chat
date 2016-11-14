@@ -32,16 +32,27 @@ var chat = {
 
         var working = false;
 
+
+        function validateInput(field, _regax) {
+            da = field.val();
+            var regex = new RegExp(_regax);
+            if (!regex.test(da)){
+                alert("Bitte korr. Text eingeben");
+                field.val("");
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         // Logging a person in the chat:
 
         $('#registerForm').submit(function(){
 
+            var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
+            var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|ch|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
 
-            //var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
-            //var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
-
-            //if (!validName || !validEmail) return false;
-            //noch beenden
+            if (!validName || !validEmail) return false;
 
             if(working) return false;
             working = true;
@@ -70,8 +81,8 @@ var chat = {
         $('#submitForm').submit(function(){
 
 
-
-            var text = $('#chatText').val();
+            var esc_text = $('#chatText').val();
+            text = safe_tags_replace(esc_text);
 
             if(text.length == 0){
                 return false;
@@ -282,3 +293,18 @@ $.fn.defaultText = function(value){
 
     return element.blur();
 }
+
+var tagsToReplace = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;'
+};
+
+function replaceTag(tag) {
+    return tagsToReplace[tag] || tag;
+}
+
+function safe_tags_replace(str) {
+    return str.replace(/[&<>]/g, replaceTag);
+}
+
