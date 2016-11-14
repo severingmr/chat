@@ -241,7 +241,7 @@ class Chat
         $esc_ID = DB::esc($data_uid);
         $result = DB::query("DELETE FROM user WHERE id = '".$esc_ID."'");
 
-        return true;
+        return $result;
 
     }
 
@@ -256,7 +256,9 @@ class Chat
 
     public static function isAllowed($name, $email)
     {
-        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='".$email."' AND name='".$name."' AND status='ok'");
+        $esc_name = DB::esc($name);
+        $esc_email = DB::esc($email);
+        $stmt = DB::query("SELECT COUNT(*) AS cnt FROM user WHERE email='".$esc_email."' AND name='".$esc_name."' AND status='ok'");
         $count = $stmt->fetch_object()->cnt;
         return ($count > 0);
     }
