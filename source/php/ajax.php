@@ -35,21 +35,21 @@ try {
     switch ($_GET['action']) {
 
         case 'login':
-            $username = checkInput($_Post['name']);
-            $email = checkInput($_Post['email']);
+            //$username = checkInput($_Post['name']);
+            //$email = checkInput($_Post['email']);
 
-            $response = Chat::login($username, $email);
+            //$response = Chat::login($username, $email);
 
-            //$response = Chat::login($_POST['name'],$_POST['email']);
+            $response = Chat::login($_POST['name'],$_POST['email']);
             break;
 
         case 'register':
-            $username = checkInput($_Post['name']);
-            $email = checkInput($_Post['email']);
+            //$username = checkInput($_Post['name']);
+            //$email = checkInput($_Post['email']);
 
-            $response = Chat::register($username, $email);
+            //$response = Chat::register($username, $email);
 
-            //$response = Chat::register($_POST['name'], $_POST['email']);
+            $response = Chat::register($_POST['name'], $_POST['email']);
 
             break;
 
@@ -76,12 +76,12 @@ try {
             break;
 
         case 'admin':
-            $username = checkInput($_Post['name']);
-            $email = checkInput($_Post['email']);
+            //$username = checkInput($_Post['name']);
+            //$email = checkInput($_Post['email']);
 
-            $response = Chat::loginAdmin($username, $email);
+            //$response = Chat::loginAdmin($username, $email);
 
-            //$response = Chat::loginAdmin($_POST['name'], $_POST['email']);
+            $response = Chat::loginAdmin($_POST['name'], $_POST['email']);
             break;
 
         case 'adminlogged':
