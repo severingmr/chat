@@ -66,7 +66,7 @@ var chat = {
             da = field.val();
             var regex = new RegExp(_regax);
             if (!regex.test(da)) {
-                alert("Bitte korr. Text eingeben");
+                alert("Bitte korr. Registrieung eingeben");
                 field.val("");
                 return false;
             } else {
