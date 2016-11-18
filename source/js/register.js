@@ -36,8 +36,14 @@ var chat = {
 
         $('#registerForm').submit(function () {
 
+
             var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
-            var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|ch|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
+            var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
+
+
+
+           // var validName = validateInput($("#name"), "^([ \u00c0-\u01ffa-zA-Z'\-])+$");
+            //var validEmail = validateInput($("#email"), "^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|ch|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$");
 
             if (!validName || !validEmail) return false;
 
@@ -62,11 +68,11 @@ var chat = {
         });
 
 
-        function validateInput(field, _regax) {
-            da = field.val();
-            var regex = new RegExp(_regax);
-            if (!regex.test(da)) {
-                alert("Bitte korr. Registrieung eingeben");
+        function validateInput(field, _regex) {
+            data = field.val();
+            var regex = new RegExp(_regex);
+            if (!regex.test(data)) {
+                alert("Please enter valid content!");
                 field.val("");
                 return false;
             } else {
