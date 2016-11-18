@@ -196,6 +196,8 @@ class Chat
     {
         $lastID = (int)$lastID;
 
+
+
         $result = DB::query('SELECT * FROM webchat_lines WHERE id > ' . $lastID . ' ORDER BY id ASC');
 
         $chats = array();
