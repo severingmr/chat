@@ -72,7 +72,7 @@ var chat = {
             data = field.val();
             var regex = new RegExp(_regex);
             if (!regex.test(data)) {
-                alert("Please enter valid content!");
+                alert("Bitte eine richtige Registrierung eingeben");
                 field.val("");
                 return false;
             } else {
